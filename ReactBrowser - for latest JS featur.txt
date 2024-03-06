@@ -1,0 +1,23 @@
+ReactBrowser :- for latest JS features
+
+chrome canary
+google chrome
+
+
+plugins + library ==framework
+webpack---bundle to group components or files	 
+Webpack in react is a JavaScript module bundler that is commonly used with React to bundle and manage dependencies. It takes all of the individual JavaScript files and other assets in a project, such as images and CSS, and combines them into a single bundle that can be loaded by the browser.
+
+
+manifest.json----pwa progressive web app (web behaves like mobile app)
+
+robots.txt----
+
+readme.md
+
+
+babel ---jsx compiler
+transpiler----high level ecma--->low level ecma
+
+# VITE_API_KEY= 3e05d5218a5640b9bbee8d743e2554c4
+# VITE_API_KEY=4a53a677f73e45d5a4c73db2c303a2cc

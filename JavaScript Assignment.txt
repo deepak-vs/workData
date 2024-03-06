@@ -1,0 +1,149 @@
+JavaScript Assignment :--
+
+let studentsData = [
+    {
+        "roll_no":14
+        "firstName:": "GAURAV",
+        "lastName:": "kalra",
+        "marks":{
+            "phy":75
+            "csc":85
+            "eng":75
+            "math": 96
+            "chem": 75
+        }
+        "address":{
+            "locality":"ramprastha"
+            "distanceFromSchoolInKM":2
+        }
+        "languages":["english","hindi","punjabi","sanskrit"]
+    },
+    {
+        "roll_no":7
+        "firstName:": "HARMAN DEEP",
+        "lastName:": "singh",
+        "marks":{
+            "phy":81
+            "csc":64
+            "eng":89
+            "math": 89
+            "chem": 77
+        },
+        "address":{
+            "locality":"shreshta vihar"
+            "distanceFromSchoolInKM":0.5
+        },
+        "languages":["english","hindi","punjabi"]
+
+    },
+    {
+        "roll_no":2
+        "firstName:": "KARAN",
+        "lastName:": "bhola",
+        "marks":{
+            "phy":90
+            "csc":85
+            "eng":80
+            "math": 95
+            "chem": 85
+        },
+        "address":{
+            "locality":"vigyan vihar"
+            "distanceFromSchoolInKM":1
+        },
+        "languages":["english","hindi","punjabi","sanskrit"]
+    }
+    ....moredata....
+];
+
+QuestionSet
+1. Find all the students who have received 90 marks in atleast one subject
+    Return the data in following format
+        students = [
+            {
+                "roll_no":14
+                "name": "Gaurav Kalra"
+            },
+            {
+                "roll_no":7
+                "name": "Harman deep Singh"
+            }
+        ]
+    Note: Marks "90" should be configurable, Like Find all Students who have received atleast 75 marks in atleast one subject.
+
+    1b. Find all students who have received distinction (75) in all subjects
+
+2. Rank all the students starting from topper, topper defines student who has max total marks.
+    Return data in following format.
+        students = [
+            "2" :{
+                "name": "Karan Bhola",
+                "totalMarks": 435
+            }
+            ...
+        ]
+
+    2b. Rank all the students starting from lowest marks?
+
+    2c. Add best4Marks also to the array, best4Marks is total marks of best 4 subjects.
+
+    2d. Return List sorted based on best4Marks
+
+3. List of all students who failed in 1 or more exam, failed means < 40.
+    Return data in following format
+        students = [
+            {
+                "roll_no":11
+                "name": "Harish Gupta"
+                "num_Backs": 2 //Donates number of subjects student failed in.
+            }
+            ....
+        ]
+
+    3b. Does you approach change if we also need the name of all the subjects student failed in.
+
+4. Languages
+    4a. Find the most commonly spoken language
+    4b. Find the analytics distribution on languge:num_students 
+        reutrn : [
+            "english: 35 //Number of Students who speak 
+        ]
+    4c. Find top 3 most commonly spoken language
+    4d. Find 3 least commonly spoken languages
+    4e. Find any one student who speaks "english"
+        4e.1
+            What if we want any student who speaks "english" & "sanskrit" Does your solution change and how.
+
+
+5. Give School Report Card
+    {
+        num_Students: 70,
+        num_Passed: 62,
+        num_Failed: 8,
+        num_Students_WithDistinction:51
+    }
+
+
+
+
+Weather App Tasks:
+
+1. Setup and API Integration :
+Set up a new JavaScript project using a framework of your choice (e.g., Node.js, React, Vue). Integrate a weather API of your choice (e.g., OpenWeatherMap, Weatherbit). Implement functions to fetch weather data for a given city using promises.
+
+2. User Interface and Display
+Design a user interface for the weather forecast application. Use HTML, CSS, and possibly a front-end framework (e.g., React, Vue) to create a clean and user-friendly interface. Display the current weather, temperature, and a 3-day forecast for the selected city.
+
+3. Promise Chaining and Error Handling
+Enhance your application by implementing promise chaining. Fetch additional data such as hourly forecasts and UV index, chaining promises together to ensure sequential execution. Implement robust error handling mechanisms to handle cases where the API request fails or the data is not available.
+
+4. Async/Await and User Interaction
+Refactor your code to use async/await syntax. Implement user interaction features such as allowing the user to input a city name and triggering the weather data retrieval. Use async/await to make the asynchronous code appear more synchronous and improve readability.
+
+Optional : Advanced Feature: Concurrency Control
+Implement a feature that allows the user to compare the current weather in multiple cities simultaneously. Explore and implement a concurrency control strategy to optimize the performance of concurrent API requests.
+
+
+Your project should be well-organized with clear separation of concerns (e.g., separate files for API calls, UI components).
+Include comments in your code to explain the purpose and functionality of each section.
+Implement error handling for various scenarios, providing meaningful error messages to the user.
