@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo</title>
+    <style>
+    *{
+        padding: 0;
+        margin: 0;
+        color: white;
+    }
+    .container{
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+    }
+    .main{
+        width: 30%;
+        height: 75%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border: 1px solid rgb(193, 183, 183);
+        box-shadow: 1px 1px 5px 5px rgb(52, 50, 50);
+    }
+    h2{
+        margin:10px;
+    }
+    #input{
+        height: 25px;
+        width: 20vw;
+        margin: 10px;
+        color: black;
+    }
+    button{
+        width: 75px;
+        padding: 5px;
+        background-color: aqua;
+    }
+
+    .box{
+        width: 90%;
+        height: 75%;
+        padding: 10px;
+        border: 1px solid black;
+    }
+    .box ul{
+        padding-left:30px;
+        overflow-y: scroll;
+        height: 90%;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main">
+            <h2>TODO</h2>
+            <div class="inputBox">
+                <input type="text" name="todo" id="input">
+                <button id='btn'>ADD</button>
+            </div>
+            <div class="box">
+                <ul id="list">
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        let list=document.getElementById('list')
+        let input=document.getElementById('input')
+        let btn=document.getElementById('btn')
+
+        const addTodo=()=>{
+            let data=input.value;
+            let listItem=document.createElement('li')
+            listItem.innerHTML=data
+            list.appendChild(listItem)
+            input.value=''
+        }
+
+        btn.addEventListener('click',addTodo)
+
+    </script>
+</body>
+</html>

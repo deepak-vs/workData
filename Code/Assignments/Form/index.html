@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+    <style>
+      form {
+        width: 30%;
+        height: 65%;
+        padding: 10px;
+        margin: 5vw auto;
+        display: flex;
+        flex-direction: column;
+        border-radius: 5px;
+        box-shadow: 1px 1px 10px 5px grey;
+      }
+      #title {
+        font-size: 1.5rem;
+        text-align: center;
+      }
+      .input {
+        margin: 15px;
+        padding: 10px;
+        font-size: 1.2rem;
+        border-width: 0px 0px 1.2px 0px;
+        border-color: blue;
+        border-style: solid;
+      }
+      .input:focus {
+        outline: none;
+      }
+      button {
+        margin: 15px;
+        padding: 10px;
+        font-size: 1.2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <marquee direction="right"><big>Welcome to Form Validation!</big></marquee>
+    <form>
+      <label id="title">FORM</label>
+      <input
+        class="input"
+        type="text"
+        name="name"
+        id="nameField"
+        placeholder="Name"
+      />
+      <input
+        class="input"
+        type="email"
+        name="email"
+        id="emailField"
+        placeholder="Email"
+      />
+      <input
+        class="input"
+        type="password"
+        name="password"
+        id="passField"
+        placeholder="Password"
+      />
+      <button id="button" onclick="validateForm()" type="submit">Submit</button>
+    </form>
+    <script>
+      function validateForm() {
+        let name = document.getElementById("nameField").value;
+        let email = document.getElementById("emailField").value;
+        let password = document.getElementById("passField").value;
+
+        var emailExpression =
+          /^(?!.*\.\.)[.\-_A-Za-z0-9]+@[A-Za-z0-9]+.[A-Za-z0-9.]+$/;
+
+        var passwordExpression =
+          /^(?=.*[A-Za-z])(?=.*[`!@#$%^*?&()-+_={}[\],.;:'"|\s]).{8,}$/;
+
+        if (name === "") {
+          alert("Invalid name");
+          return;
+        }
+        if (!emailExpression.test(email)) {
+          alert("Email is not valid. Try Again!");
+          return;
+        }
+        if (!passwordExpression.test(password)) {
+          alert("Password is not valid. Try Again!");
+          return;
+        }
+        alert("Form Submitted successfully.");
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="parent">
+        <div class="child">
+            <button type="submit" id="btn" >click me</button>
+        </div>
+    </div>
+
+    <script >
+        let ch=document.getElementsByClassName('child')[0];
+        let par=document.getElementsByClassName('parent')[0];
+
+        let bn=document.getElementById('btn');
+        
+        function handleClick(e){
+            console.log(e.target,"clicked!")
+        }
+
+        ch.addEventListener('click',()=>{
+            console.log("event in child ");
+            // event.preventDefault();
+        });
+        parent.addEventListener('click',()=>{
+            
+            console.log("event in parent!")
+        });
+
+
+    </script>
+</body>
+</html>
