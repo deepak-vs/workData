@@ -1,30 +1,37 @@
 React Native------------------------------------------------------------------------------------------
 
 
-1.INTRODUCTION
+INTRODUCTION
 	-React vs React Native
 	-Installation (Choclaty,node & java, android studio,emulator setup)
 	-File structure
-2.COMPONENTS
-	-View,Text,Image,Button,ScrollView,Alert,TextInput,Flatlist,Touchables-(Opacity,highlight,pressable)
+COMPONENTS
+	-View,ScrollView,Text,Image,Button,Alert,TextInput,Flatlist,Touchables-(Opacity,highlight,pressable)
 	KeyboardAvoidingView,ImageBackground,keyBoardAvoidingScrollView,SafeAreaView(avoids status bar area),
 
 
-3.STYLES:----viewstyle,imagestyle,textstyle----styles in native(for ts--interface <styledInterface>)	
+STYLES:----viewstyle,imagestyle,textstyle----styles in native(for ts--interface <styledInterface>)	
 
 
 
-1.View ----------no scroll available
+
+1.View ----------no scroll available, (automatically it is a flex container, no need of display:"Flex",it does not 		reserved any space untill it gets some children.)
 2.Text
-3.Image-----<Image source={localimageImported} />   <Image source={{uri:"external url"}} style={{width="must" height="must"}}/>
+
+3.Image-----	<Image source={localimageImported} />   
+		<Image source={{uri:"external url"}} style={{width="must" height="must"}}/>
+
 4.ImageBackground----- <ImageBackground source={}>Content</ImageBackground>
+
 5.ScrollView-----view+scrolliing ------can overlap status bar ---to avoid this wrap the 
 							scrollView inside the View component with specific height or marginTop.
+
 6.Button----
+
 7.Pressable----it is a wrapper componeny to wrap a child component and make it a pressable so that we can use onPress event on that commponent.It can detect varius press interactions---onPressIn,onLongPress(500ms),onPressOut
+
 8.Modal--overlays the screen to provide or prompt imp information.Default it is always visible.
-	<Modal 
-		visible={visibility} onRequestClose={()=setVisible(False)} animationType={} presentationStyle={for 	ios only}>Content</Modal>
+	<Modal visible={visibility} onRequestClose={()=setVisible(False)} animationType={} presentationStyle={for 	ios only}>Content</Modal>     or
 
 	<Modal 
         visible={visibility} -------state
@@ -46,6 +53,7 @@ React Native--------------------------------------------------------------------
 
 9.StatusBar:-to add,remove,modify the status bar 
 	<StatusBar backgroundColor="crimson" barStyle={"light-content"} hidden/>
+
 10.ActivityIndicator:-this component is used to show loading indicator in app
 			{ <ActivityIndicator size={"large"} color="red" animating={true}/>}
 
@@ -54,16 +62,49 @@ React Native--------------------------------------------------------------------
 	ii).Alert.alert("Title","Data")  ------------Alert API
 	iii).Alert.alert("title","Data",[{text:"ButtonText",onPress:()=>{button Event Handler}},{},{}]	
 			-------Alert API with title,data,max three buttons.
+
+12.TextInput :-    <TextInput 
+            style={styles.inputBox}
+            value={password}
+            onChangeText={setPassword}
+            placeholder='Password'
+            secureTextEntry 
+	    keyboardType='numeric'
+	    autoCorrect={false}
+	     autoCapitlize="none"/>    For multiline TextBox use multiline attribute in TextInput 
+
+13.KeyBoardAvoidingView :- this component moves upward whenever keyboard appears.
+	<KeyBoardAvoidingView behaviour="height/positon/padding" enabled={true} >
+		Your Content
+	</KeyBoardAvoidingView>
+works differently on both os.
+
+
+13.Switch :- Component used for toggling for binary choices    
+           
+
 12.Custom Components ------same as custom components of React.
+
 13.Styling :- Styling is done using Javascript instead direct css.(camelCase Naming of Properties).
 		Approaches:-- i). inline(style attribute  style={{width:"200",height:"200"}})   
 			     ii).internal (stylesheet.create({}))   
 			    iii).external (import styles from external module)  
 			     iv).all style={[myStyle.text,myStyle2.inner,width:"200"]}------Array of styles
 				Note:-last element(style) of an Array of styles will have preference.(overriding 				     of styles will take place)
+				In ios,no border radius Text component.
+				In android,there is no shadow properties.(shadowOpacity,shadowOffset,shadowRadius)
+					  there is only (shadowColor and elevation properties.)	
+				Style inheritance works with nested Text (Text SubTree or use custom Text 					Component) but not with Text inside View.
+				FlexBox-For container--flex property(takes all availbale space),
+						flexDirection-row,row-reverse,column(default),column-reverse,						justifyContent,alignItems,alignContent,FlexWrap,gap,rowGap,columnGap,
+						
+ 					For items- flex property (takes available space equally).flex>=0,
+					alignSelf,flexBasis--to set initial size of flex item along main axis,
+					flexShrink,flexGrow---(default value=0,it is relative to siblings)	
+						
 
 
-14.List in React Native :- i). using ScrollView and array.map(),but it is not optimised as it render all the array 				  items at once.
+.List in React Native :- i). using ScrollView and array.map(),but it is not optimised as it render all the array 				  items at once.
 			  ii). using Flatlist,This component renders only the visible items making it highly 				       optimised for long lists	
 		
 
