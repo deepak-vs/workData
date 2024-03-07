@@ -1,0 +1,248 @@
+import React,{useState} from 'react'
+import {
+    SafeAreaView,
+    ScrollView,
+    StatusBar,
+    StyleSheet,
+    Text,
+    useColorScheme,
+    View,
+    Button,
+    TextInput,
+    Image,
+    KeyboardAvoidingView,
+    Pressable,
+    Modal,
+    ActivityIndicator,
+    Alert,
+    FlatList,
+    TouchableOpacity
+  } from 'react-native';
+  import Banner from './Banner';
+
+const Signup = () => {
+  
+    const [name,setName]=useState("");
+    const [phone,setPhone]=useState("");
+    const [email,setEmail]=useState("");
+    const [password,setPassword]=useState("");
+    const [visibility,setVisibility]=useState(false);
+    const [formErrors,setFormErrors]=useState({});
+   
+
+    const validate=()=>{
+      let errors={};
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const passRegex=/^(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/
+        const passResult=passRegex.test(password)
+
+        if(!emailRegex.test(email)){
+          errors.email="Enter a valid Email !"
+        }
+        if(!name) errors.name="Empty name found !"
+        if(!passResult) errors.password="Password is too weak !"
+        if(phone.length!==10) errors.phone="Incorrect phone number found !"
+
+        setFormErrors(errors);
+        return Object.keys(errors).length===0;
+ 
+        // Alert.alert("Validation Result ",(emailRegex.test(email) && name.trim().length!==0 && passResult)?"Validation Successfull":"Invalid Data")
+
+    }
+
+    const closeModal=()=>{
+        setVisibility(false);
+    } 
+    const confirmClear=()=>{
+        setVisibility(false);
+        setEmail("");setName("");
+        setPhone("");setPassword("");
+        setFormErrors({})
+    }   
+  
+    const clearDetails=()=>{     
+      setVisibility(true);      
+    }
+    
+  
+    return (
+      <ScrollView >
+        {visibility && <StatusBar backgroundColor="blue" barStyle={"default"}/>}
+        <View>
+          <Text style={{fontSize:34,marginTop:10,color:"#8C3B51"}}>Welcome to React Native</Text>
+        </View>
+  
+        
+          <View style={styles.container}>
+          <View style={styles.formTitle}>
+            <Text style={styles.title}>Create new account</Text>      
+          </View>          
+          
+          <View style={styles.inputContainer}>
+            <TextInput
+             style={styles.inputBox} 
+             value={name}
+             onChangeText={setName}
+             placeholder='Full Name'
+             >
+            </TextInput>
+            {formErrors.name?<Text style={styles.validationError}>{formErrors.name}</Text>:null}
+  
+            <TextInput
+            style={styles.inputBox}
+            defaultValue={phone}
+            onChangeText={(text)=>setPhone(text)}
+            placeholder='Phone'
+            keyboardType='numeric'>
+            </TextInput>
+            {formErrors.phone?<Text style={styles.validationError}>{formErrors.phone}</Text>:null}
+  
+            <TextInput 
+            style={styles.inputBox}
+            defaultValue={email}
+            onChangeText={(text)=>setEmail(text)}
+            placeholder='E-mail'>
+            </TextInput>
+            {formErrors.email?<Text style={styles.validationError}>{formErrors.email}</Text>:null}
+  
+            <TextInput 
+            style={styles.inputBox}
+            value={password}
+            onChangeText={setPassword}
+            placeholder='Password'
+            secureTextEntry
+            >          
+            </TextInput>
+            {formErrors.password?<Text style={styles.validationError}>{formErrors.password}</Text>:null}
+          </View>
+  
+          <View style={styles.myButtons}>
+            <Button onPress={validate} title="Sign Up"/>
+            <Button onPress={clearDetails} title="Clear"/>
+            </View>
+          </View>
+  
+        <Banner/>
+        
+      
+      <Modal        
+        visible={visibility} 
+        transparent={true} 
+        animationType='fade' 
+        onRequestClose={()=>{
+            console.warn("Modal closing")
+            setVisibility(false)
+        }}
+        onShow={()=>{
+            console.log("Modal opened!")
+        }}
+        >
+
+        <TouchableOpacity style={styles.overlay} onPress={closeModal}  />
+
+          <View style={styles.modalContainer}>
+            <View><Text style={styles.title}>Confirm Clear</Text></View>
+            <TextInput style={styles.modalTextBox} placeholder='Please confirm to clear the Form Data !' multiline/>
+            <View style={styles.myButtons}>
+            <Button title="confirm" onPress={confirmClear}/>
+            <Button title="Close" onPress={closeModal}/>
+            </View>
+          </View>
+        </Modal>  
+    
+      
+  
+        
+     </ScrollView>
+    );
+  }
+  
+  const styles=StyleSheet.create({
+      
+    formTitle:{
+      marginTop:15,
+      marginLeft:15,  
+    },
+    title:{
+      color:"red",
+      fontSize:30
+    },
+    inputContainer:{
+      display:"flex",
+      justifyContent:"center",
+      width:350,
+      marginLeft:20,
+      marginTop:10,
+      
+    },
+    inputBox:{
+      borderWidth:2,
+      borderColor:"black",
+      borderStyle:"solid",
+      margin:15,
+      borderRadius:25,
+      padding:10,
+      fontSize:20,
+      paddingLeft:15,
+     },
+     imageStyle:{
+        marginLeft:100,
+        marginTop:25,
+        height:150
+     },
+     myButtons:{
+      width:200,
+      marginHorizontal:100,
+      marginVertical:25,
+      flexDirection:"row",
+      justifyContent:"space-evenly",
+      alignItems:"center"
+    
+    },
+    modalContainer: {
+      marginVertical:250,
+      marginHorizontal:35,
+      fontSize:50,
+      width:325,
+      height:270,
+      justifyContent: 'space-evenly',
+      alignItems: 'center',
+      backgroundColor: 'white',
+      borderColor:"black",
+      borderStyle:"solid",
+      borderRadius:20,
+      elevation:10,
+      shadowColor:"black",
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      right: 0,     
+    },  
+    modalTextBox:{
+        borderWidth:0.25,
+        width:250,
+        borderRadius:10,
+        paddingHorizontal:20,
+        fontSize:20,
+        fontWeight:"bold",
+        textAlignVertical:"top"
+    } ,
+    overlay:{
+        backgroundColor:"'rgba(0, 0, 0, 0.5)",
+        flex:1,     
+       
+    },
+    validationError:{
+        color:"red",
+        fontSize:15,
+        marginHorizontal:25,
+        borderWidth:2,
+        borderColor:"black",
+        margin:0
+    }
+  
+  })
+  
+
+
+export default Signup
